@@ -20,7 +20,7 @@ func loadItems() -> [String]? {
     
     var array = items.components(separatedBy: "\n")
     array = array.filter({ $0 != "" })
-
+    
     return array
 }
 
@@ -77,18 +77,19 @@ func sortItems() {
             if let indexOne = array.firstIndex(of: itemOne),
                 let indexTwo = array.firstIndex(of: itemTwo) {
                 
-                if response == "1" {
-                    
+                switch response {
+                case "1":
                     if indexOne > indexTwo {
                         let item = array.remove(at: indexOne)
                         array.insert(item, at: indexTwo)
                     }
-                } else {
-                    
+                case "2":
                     if indexTwo > indexOne {
                         let item = array.remove(at: indexTwo)
                         array.insert(item, at: indexOne)
                     }
+                default:
+                    exit(0)
                 }
             }
             
